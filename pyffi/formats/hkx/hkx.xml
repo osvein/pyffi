@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE fileformat>
+<fileformat>
+    <version num="hk_2010.2.0-r1">Skyrim</version>
+    <version num="hk_2014.1.0-r1">Fallout 4</version>
+
+    <!--
+    *******************
+    *** basic types ***
+    *******************
+    -->
+
+    <basic name="uint16">
+        An unsigned 32-bit integer.
+    </basic>
+
+    <basic name="uint32">
+        An unsigned 32-bit integer.
+    </basic>
+
+    <basic name="ZString16">
+        A null terminated string padded to 16-bytes after the terminator
+        Padding seems to consist of 0xFF-bytes
+    </basic>
+
+    <!--
+    *******************
+    *** alias types ***
+    *******************
+    -->
+
+    <!--
+    ******************
+    *** enum types ***
+    ******************
+    -->
+
+    <!--
+    ******************
+    *** bitstructs ***
+    ******************
+    -->
+
+    <!--
+    ***************
+    *** structs ***
+    ***************
+    -->
+
+   <struct name="Header">
+       <add name="Unknown 1" type="uint32" default="0x57E0E057">Seems to be 0x57E0E057 for all files</add>
+       <add name="Unknown 2" type="uint32" default="0x10C0C010">Seems to be 0x10C0C010 same for all files</add>
+       <add name="Unknown 3" type="uint32" default="0">Seems to be 0 for all files</add>
+       <add name="Unknown 4" type="uint32" default="0x08000000">
+           hk_2010.2.0-r1: Seems to be 0x08000000 for all files
+           hk_2014.1.0-r1: Seems to be 0x0b000000 for all files
+           Could be a version identifier
+       </add>
+       <add name="Unknown 5" type="uint32" default="0x04010000">
+           hk_2010.2.0-r1: Seems to be 0x04010000 for all files
+           hk_2014.1.0-r1: Seems to be 0x08010000 for all files
+           Could be a version identifier
+       </add>
+       <add name="Unknown 6" type="uint32" default="0x03000000">Seems to be 0x03000000 for all files</add>
+       <add name="Unknown 7" type="uint32" default="0x02000000">Seems to be 0x02000000 for all files</add>
+       <add name="Unknown 8" type="uint32" default="0">Seems to be 0 for all files</add>
+       <add name="Unknown 9" type="uint32" default="0">Seems to be 0 for all files</add>
+       <add name="Unknown 10" type="uint32" default="0x4B000000">Seems to be 0x4B000000 for all files</add>
+       <add name="Unknown 11" type="uint32" default="0x03000000">Seems to be 0x03000000 for all files</add>
+       <add name="Version" type="ZString16" default="hk_2010.1.0-r1">The version string</add>
+       <add name="Unknown 12" type="uint32" default="0">Seems to be 0 for all files</add>
+       <add name="Unknown 13" type="uint16" default="0xFF00">
+           hk_2010.2.0-r1: Seems to be 0xFF00 for all files
+           hk_2014.2.0-r1: Seems to be 0x1500 for all files
+       </add>
+       <add name="Section Offset" type="uint16" default="0">
+           hk_2010.2.0-r1: Seems to be 0 for all files
+           hk_2014.1.0-r1: The size (in bytes) of the padding between the end
+           of the header and the start of the first section header. The padding
+           seems to consist of a 0x14-byte followed by 0x00-bytes for all files,
+           if present.
+       </add>
+   </struct>
+
+   <struct name="Section Header">
+       <add name="Section Name" type="ZString16">The name of the section</add>
+       <add name="Unknown 1" type="uint32" default="0x000000FF">Seems to be 0x000000FF for all sections headers</add>
+       <add name="Section Pointer" type="uint32">The offset of the section from the beginning of the file</add>
+       <add name="Data 1 Offset" type="uint32">The offset of the first data part from the beginning of the section</add>
+       <add name="Data 2 Offset" type="uint32">The offset of the second data part from the beginning of the section</add>
+       <add name="Data 3 Offset" type="uint32">The offset of the third data part from the beginning of the section</add>
+       <add name="Data 4 Offset" type="uint32">The offset of the fourth data part from the beginning of the section</add>
+       <add name="Data 5 Offset" type="uint32">The offset of the fifth data part from the beginning of the section</add>
+       <add name="End Offset" type="uint32">The offset of the end of the section from the beginning of the section</add>
+   </struct>
+
+</fileformat>
